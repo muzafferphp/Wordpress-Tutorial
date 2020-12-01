@@ -16,7 +16,7 @@ Step 1. I have created a form (in template file) and added function on submit bu
   </form>
 </div>
 
-Step 2. On click submit button calling function - onclick="myFunctionForm()"  I have added jquery function on header with ajax function
+Step 2. On click submit button calling function - onclick="myFunctionForm()"  I have added jquery function on header with ajax function in wp-header.
 ===================================================================================
 		
 	<script>
@@ -37,3 +37,5 @@ Step 2. On click submit button calling function - onclick="myFunctionForm()"  I 
 
 	}
 	</script>
+Step 3. I have define a action in side function of wordpress function.php file.
+==============================================================================
