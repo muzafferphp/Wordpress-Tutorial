@@ -47,3 +47,5 @@ function myFunction() {
 	wp_die(); // this is required to terminate immediately and return a proper response
 }
 
+Here myFunction is the function name and "_my_action" action name which is define in -action: 'my_action' with wp_ajax_nopriv.
+I have implemented in localhost it working fine I have got response data.
