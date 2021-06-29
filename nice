@@ -1,1 +1,120 @@
 
+$id=56;
+$query_id=get_post($id);
+<?php echo $query_id->post_title;?>
+
+<?php echo $query_id->post_content;?>
+
+<?php echo $query_id->post_excerpt;?>
+
+<?php echo get_post_meta($id, 'Get_started',  true); ?>
+
+ <?php get_cat_name( $cat_id ) ?> 
+
+<?php echo get_the_post_thumbnail($post_id4, 'full', array('class' => 'img-responsive cv33')); ?>
+
+
+<?php echo wp_trim_words($queried_post1->post_content, 40, '...' );?>
+
+<?php echo wp_trim_words($blog_data->post_content, 20, '...');?>
+
+<?php the_permalink(); ?>
+
+<?php echo $excerpt; ?>//use for small title display
+
+
+<?php $comment_id = get_comment_ID(); ?>
+
+<div id="comment-<?php echo $comment_id; ?>">Comment by 
+<?php comment_author() ?>: </div>
+<div class="comment-text"><?php comment_text() ?></div>
+
+
+<span class="entry-date"><?php echo get_the_date(); ?></span>
+
+ <?php $author = get_the_author(); ?> 
+
+<h2><?php echo get_post_meta($post->ID, 'third-value',  true); ?></h2>
+			
+			
+============= feach cotent by category name================= 	
+     <?php
+		$args = array( 'posts_per_page' => 5, 'category_name' =>'Addiction Treatment' );
+		$myposts = get_posts( $args );
+		foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
+    
+				<?php the_title();?>
+				<?php the_content();?>
+				<?php echo get_post_meta($id, 'excel',  true); ?>
+      <?php endforeach; 
+			wp_reset_postdata();?>
+	
+	
+============= feach cotent by category name end================= 	
+
+
+============= feach menu================= =======================
+
+<?php wp_nav_menu(array('menu'=>'head_menu','container' => 'false', 'menu_class' => 'nav navbar-nav navbar-right top_menu'))?>
+ 
+ ============= feach menu end =================   ============    
+ 
+ 
+ 
+ ============= pagination start ================================  
+ 
+ 
+ <div class="container">
+		
+		
+		
+	<?php
+	$btpgid=get_queried_object_id();
+	$btmetanm=get_post_meta( $btpgid, 'WP_Catid','true' );
+	$paged = (get_query_var('paged')) ? get_query_var('paged') :1;
+
+	$args = array( 'posts_per_page' => 2, 'category_name' =>'blog',
+	'paged' => $paged,'post_type' => 'post','order'=> 'ASC' );
+    $postslist = new WP_Query( $args );
+
+    if ( $postslist->have_posts() ) :
+        while ( $postslist->have_posts() ) : $postslist->the_post(); 
+	?>
+		
+		
+		<div class="row kukdu">
+			<div class="">
+			<div class="col-md-5 col-sm-5 col-xs-12">
+				<div class="left_images_div">
+					<a href="<?php echo get_permalink( $post->ID); ?>"><?php echo get_the_post_thumbnail( $_post->ID, 'thumbnail', array( 'class' => 'img-responsive img_blog' ));?></a>
+				</div>
+			</div>
+		
+			<div class="col-md-7 col-sm-7 col-xs-12">
+				<div class="right_text_div">
+					<h1><?php the_title(); ?></h1>
+				
+				 <p class="party"><?php echo wp_trim_words($post->post_content, 40, '...');?></p>
+			<a href="<?php echo get_permalink( $post->ID); ?>"><input type="button" class="btn btn-primary btn-second" value="READ MORE"></a>
+				</div>
+			</div>
+		</div>
+		</div>
+		<span class="pagination">
+		<?php 	
+	 endwhile;  
+
+            next_posts_link( 'Next', $postslist->max_num_pages );
+            echo"&nbsp &nbsp &nbsp";
+            previous_posts_link( 'previous &raquo;' ); 
+        wp_reset_postdata();
+    endif;
+    ?>
+		</span>
+	</div>
+ ============= pagination end ================================                                         
+
+
+
+
+
